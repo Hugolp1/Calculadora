@@ -1,0 +1,67 @@
+:root{
+    --main-page-color: rgb(87, 89, 102); 
+    --input-color: rgb(236, 239, 245);
+}
+
+body{
+    background-color: var(--main-page-color);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.calc{
+    background-color: var(--main-page-color);
+    display: flex;
+    margin: 0 auto;
+    margin-top: 7.5%;
+    border: 5px solid var(--input-color);
+    border-radius: 20px;
+    width: 70vw;
+    height: 65vh;
+
+}
+
+.texto-calc{
+    background-color: var(--input-color);
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding: 15px 880px 15px 5px;
+    font-size: 20px;
+}
+
+.numeros{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0 10px 15px;
+    font-size: 16px;
+}
+
+.num{
+    width: 250px;
+}
+
+.op{
+    margin: 0 127px;
+    width: 75px;    
+}
+
+label,.num,.op{
+    border-radius: 7px;
+    padding: 5px 10px 5px 5px;
+}
+
+.num1, .num2{
+    background-color: var(--input-color);
+    text-align: center;
+}
+
+.enviar{
+    text-align: left;
+    background-color: var(--input-color);
+    margin-left: 15px;
+    border-radius: 7px;
+    width: 70px;
+    height: 30px;
+    padding-left: 5px;
+    font-size: 16px;
+}
