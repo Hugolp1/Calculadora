@@ -25,13 +25,13 @@
                 <input class="num" type="number" name="num2" id="num2">
             </div>
             <button class="enviar" type="submit">Calcular</button>
-            <div class="mostrar mostrar-calculo">Calculo</div>
+            <div class="mostrar mostrar-calculo"></div>
             <button class="enviar salvar" type="submit">Salvar</button>
             <button class="enviar pegar" type="submit">Pegar valores</button>
             <button class="enviar m" type="submit">M</button>
             <button class="enviar apagar" type="submit">Apagar histórico</button>
             <div class="texto-hist">Histórico</div>
-            <div class="mostrar mostrar-hist">Conteúdo histórico</div>
+            <div class="mostrar mostrar-hist"></div>
 
         </form>
     </div>
