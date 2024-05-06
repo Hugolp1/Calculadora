@@ -1,89 +1,86 @@
 <?php
 session_start();
 
-// Inicializar o histórico se não estiver definido
-if (!isset($_SESSION['history'])) {
-    $_SESSION['history'] = [];
+if (!isset($_SESSION['historico'])) {
+    $_SESSION['historico'] = [];
 }
 
-$result = "";
-$all_results = ""; // Para armazenar todo o histórico
+$resultado = "";
+$todos_resultados = "";
+$num1 = 0;
+$op = '+';
+$num2 = 0;
 
 if (isset($_GET['num1']) && isset($_GET['op'])) {
-    $num1 = (float)$_GET['num1'];
-    $op = $_GET['op'];
+    $num1 = isset($_GET['num1']) ? (float)$_GET['num1'] : 0;
+    $op = isset($_GET['op']) ? $_GET['op'] : '+';
+    $num2 = isset($_GET['num2']) ? (float)$_GET['num2'] : 0;
 
     if ($op !== '!') {
         if (isset($_GET['num2'])) {
-            $num2 = (float)$_GET['num2'];
-
-            // Verificar a operação para evitar erros
             switch ($op) {
                 case '+':
-                    $result = $num1 + $num2;
+                    $resultado = $num1 + $num2;
                     break;
                 case '-':
-                    $result = $num1 - $num2;
+                    $resultado = $num1 - $num2;
                     break;
                 case '*':
-                    $result = $num1 * $num2;
+                    $resultado = $num1 * $num2;
                     break;
                 case '/':
                     if ($num2 == 0) {
-                        $result = "Erro: Divisão por zero não é permitida.";
+                        $resultado = "Erro: Divisão por zero não é permitida.";
                     } else {
-                        $result = $num1 / $num2;
+                        $resultado = $num1 / $num2;
                     }
                     break;
                 case '^':
-                    $result = pow($num1, $num2);
+                    $resultado = pow($num1, $num2);
                     break;
                 default:
-                    $result = "Operação inválida";
+                    $resultado = "Operação inválida";
                     break;
             }
 
-            // Adicionar ao histórico
-            $calculation = "$num1 $op $num2 = $result";
-            $_SESSION['history'][] = $calculation;
+            $calculo = "$num1 $op $num2 = $resultado";
+            $_SESSION['historico'][] = $calculo;
 
         } else {
-            $result = "Erro: O segundo número é necessário para esta operação.";
+            $resultado = "Erro: O segundo número é necessário para esta operação.";
         }
     } else {
-        // Operação de fatorial
         if ($num1 < 0) {
-            $result = "Erro: Fatorial de número negativo não é possível.";
+            $resultado = "Erro: Fatorial de número negativo não é possível.";
         } else {
-            $result = 1;
+            $resultado = 1;
             for ($i = 2; $i <= $num1; $i++) {
-                $result *= $i;
+                $resultado *= $i;
             }
-            $calculation = "$num1! = $result";
-            $_SESSION['history'][] = $calculation;
+            $calculo = "$num1! = $resultado";
+            $_SESSION['historico'][] = $calculo;
         }
     }
 }
 
-// Verificar ações específicas
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
-        case 'save':
-            if ($result !== "") {
-                $_SESSION['history'][] = "Salvo: $result";
+        case 'salvar':
+            if ($resultado !== "") {
+                $_SESSION['historico'][] = $resultado;
             }
             break;
-        case 'get':
-            // Mostrar todo o histórico
-            $all_results = implode("<br>", $_SESSION['history']);
+        case 'pegar':
+            if (!empty($_SESSION['historico'])) {
+                $todos_resultados = end($_SESSION['historico']);
+            }
             break;
-        case 'clear':
-            $_SESSION['history'] = [];
+        case 'apagar':
+            $_SESSION['historico'] = [];
             break;
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -112,16 +109,16 @@ if (isset($_GET['action'])) {
             </div>
             <button class="enviar" type="submit">Calcular</button>
             <div class="mostrar mostrar-calculo">
-                <?php echo htmlspecialchars($result); ?>
+                <?php echo "$num1 $op $num2 = " . htmlspecialchars($resultado); ?>
             </div>
-            <button class="enviar salvar" type="submit" name="action" value="save">Salvar</button>
-            <button class="enviar pegar" type="submit" name="action" value="get">Pegar valores</button>
-            <button class="enviar apagar" type="submit" name="action" value="clear">Apagar histórico</button>
+            <button class="enviar salvar" type="submit" name="action" value="salvar">Salvar</button>
+            <button class="enviar pegar" type="submit" name="action" value="pegar">Pegar valores</button>
+            <button class="enviar apagar" type="submit" name="action" value="apagar">Apagar histórico</button>
             <div class="texto-hist">Histórico</div>
             <div class="mostrar mostrar-hist">
                 <?php
-                if ($all_results) {
-                    echo $all_results; 
+                if ($todos_resultados) {
+                    echo $todos_resultados; 
                 }
                 ?>
             </div>
