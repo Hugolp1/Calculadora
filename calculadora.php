@@ -44,7 +44,12 @@ if (isset($_GET['num1']) && isset($_GET['op'])) {
             }
 
             $calculo = "$num1 $op $num2 = $resultado";
-            $_SESSION['historico'][] = $calculo;
+
+            array_unshift($_SESSION['historico'], $calculo);
+
+            if (count($_SESSION['historico']) > 10) {
+                array_pop($_SESSION['historico']);
+            }
 
         } else {
             $resultado = "Erro: O segundo número é necessário para esta operação.";
@@ -58,7 +63,11 @@ if (isset($_GET['num1']) && isset($_GET['op'])) {
                 $resultado *= $i;
             }
             $calculo = "$num1! = $resultado";
-            $_SESSION['historico'][] = $calculo;
+            array_unshift($_SESSION['historico'], $calculo);
+
+            if (count($_SESSION['historico']) > 10) {
+                array_pop($_SESSION['historico']);
+            }
         }
     }
 }
@@ -66,13 +75,10 @@ if (isset($_GET['num1']) && isset($_GET['op'])) {
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case 'salvar':
-            if ($resultado !== "") {
-                $_SESSION['historico'][] = $resultado;
-            }
             break;
         case 'pegar':
             if (!empty($_SESSION['historico'])) {
-                $todos_resultados = end($_SESSION['historico']);
+                $todos_resultados = implode("<br>", $_SESSION['historico']);
             }
             break;
         case 'apagar':
@@ -81,6 +87,7 @@ if (isset($_GET['action'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
