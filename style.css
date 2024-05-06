@@ -25,29 +25,29 @@ body{
     display: inline-block;
     margin-top: 10px;
     margin-left: 15px;
-    padding: 15px 880px 15px 5px;
+    padding: 1vh 57vw 1vh 0.5vw;
     font-size: 20px;
 }
 
 .numeros{
     display: flex;
     flex-direction: row;
-    margin: 10px 0 10px 15px;
+    margin: 1vh 0 1vh 1vw;
     font-size: 16px;
 }
 
 .num{
-    width: 250px;
+    width: 16.5vw;
 }
 
 .op{
-    margin: 0 127px;
-    width: 75px;    
+    margin: 0 8.1vw;
+    width: 5vw;    
 }
 
 label,.num,.op{
     border-radius: 7px;
-    padding: 5px 10px 5px 5px;
+    padding: 0.5vh 0.5vw 0.5vh 0.5vw;
 }
 
 .num1, .num2{
@@ -58,10 +58,51 @@ label,.num,.op{
 .enviar{
     text-align: left;
     background-color: var(--input-color);
-    margin-left: 15px;
+    margin: 0 1vw;
     border-radius: 7px;
-    width: 70px;
-    height: 30px;
-    padding-left: 5px;
+    width: 5vw;
+    height: 4vh;
+    padding-left: 0.5vw;
     font-size: 16px;
+}
+
+.mostrar{
+    display: flex;
+    background-color: var(--input-color);
+    width: 67vw;
+    height: 4vh;
+    margin: 1vh 0 1vh 1vw;
+    border-radius: 7px;
+    text-align: left;
+    padding: 0.3vh 0 0.3vh 0.5vw;
+    align-items: center;
+}
+
+.salvar{
+    width: 4vw;
+}
+
+.pegar{
+    width: 8vw;
+}
+
+.m{
+    width: 2vw;
+}
+
+.apagar{
+    width: 9vw;
+}
+
+.texto-hist{
+    background-color: var(--input-color);
+    margin: 1vh 0 1vh 1vw;
+    border-radius: 7px;
+    padding: 0.3vh 0 0.3vh 0.5vw;
+    font-size: 20px;
+}
+
+.mostrar-hist{
+    align-items: flex-start;
+    height: 29vh;
 }

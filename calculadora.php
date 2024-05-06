@@ -18,11 +18,21 @@
                     <option value="-">-</option>
                     <option value="*">*</option>
                     <option value="/">/</option>
+                    <option value="!">!</option>
+                    <option value="^">^</option>
                 </select>
                 <label class="num2" for="num2">Numero 2</label>
                 <input class="num" type="number" name="num2" id="num2">
             </div>
             <button class="enviar" type="submit">Calcular</button>
+            <div class="mostrar mostrar-calculo">Calculo</div>
+            <button class="enviar salvar" type="submit">Salvar</button>
+            <button class="enviar pegar" type="submit">Pegar valores</button>
+            <button class="enviar m" type="submit">M</button>
+            <button class="enviar apagar" type="submit">Apagar histórico</button>
+            <div class="texto-hist">Histórico</div>
+            <div class="mostrar mostrar-hist">Conteúdo histórico</div>
+
         </form>
     </div>
 </body>
